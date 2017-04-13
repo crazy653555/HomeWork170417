@@ -24,6 +24,7 @@ namespace HomeWork.Models
         [Required]
         public string 姓名 { get; set; }
         
+        [DataType(DataType.EmailAddress)]
         [StringLength(250, ErrorMessage="欄位長度不得大於 250 個字元")]
         [Required]
         public string Email { get; set; }
