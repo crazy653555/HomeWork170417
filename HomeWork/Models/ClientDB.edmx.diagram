@@ -7,7 +7,7 @@
       <Diagram DiagramId="615eec8f7bce4ff2b7e2575709c12589" Name="Diagram1">
         <EntityTypeShape EntityType="客戶資料Model.客戶資料" Width="1.5" PointX="3.5" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="客戶資料Model.客戶銀行資訊" Width="1.5" PointX="6.125" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="客戶資料Model.客戶聯絡人" Width="1.5" PointX="1.625" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="客戶資料Model.客戶聯絡人" Width="1.5" PointX="1" PointY="2" IsExpanded="true" />
         <AssociationConnector Association="客戶資料Model.FK_客戶銀行資訊_客戶資料" ManuallyRouted="false" />
         <AssociationConnector Association="客戶資料Model.FK_客戶聯絡人_客戶資料" ManuallyRouted="false" />
       </Diagram>
