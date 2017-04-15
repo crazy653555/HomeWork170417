@@ -1,13 +1,19 @@
 ﻿@model IEnumerable<HomeWork.Models.客戶資料>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "客戶資料";
 }
 
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+
+    @using (Html.BeginForm("Index", "客戶資料", FormMethod.Get))
+    {
+        <input type="search" name="keyword" placeholder="請輸入關鍵字"/>
+    }
+    
 </p>
 <table class="table">
     <tr>
