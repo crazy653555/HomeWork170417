@@ -176,6 +176,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\客戶清單.cs">
+      <DependentUpon>ClientDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>ClientDB.tt</DependentUpon>
     </Compile>
@@ -273,6 +276,7 @@
     <Content Include="Views\客戶銀行資訊\Details.cshtml" />
     <Content Include="Views\客戶銀行資訊\Edit.cshtml" />
     <Content Include="Views\客戶銀行資訊\Index.cshtml" />
+    <Content Include="Views\客戶資料\客戶清單.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

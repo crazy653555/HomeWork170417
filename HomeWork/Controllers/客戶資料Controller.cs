@@ -14,6 +14,11 @@ namespace HomeWork.Controllers
     {
         private 客戶資料Entities db = new 客戶資料Entities();
 
+        public ActionResult 客戶清單()
+        {
+            return View(db.客戶清單);
+        }
+
         // GET: 客戶資料
         public ActionResult Index(string keyword)
         {
