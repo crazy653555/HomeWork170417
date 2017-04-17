@@ -3,10 +3,16 @@ namespace HomeWork.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+    using System.Web.Security;
+
     [MetadataType(typeof(客戶資料MetaData))]
     public partial class 客戶資料
     {
+        public void 對密碼進行雜湊運算()
+        {
+            this.密碼 = FormsAuthentication.HashPasswordForStoringInConfigFile(this.密碼, "SHA1");
+        }
+
     }
     
     public partial class 客戶資料MetaData
@@ -37,6 +43,8 @@ namespace HomeWork.Models
         public string Email { get; set; }
 
         public string 帳號 { get; set; }
+
+        [DataType(DataType.Password)]
         public string 密碼 { get; set; }
 
         [UIHint("客戶分類")]

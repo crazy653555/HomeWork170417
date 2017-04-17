@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using HomeWork.Models;
 using HomeWork.Controllers.ActionFilterAttribute;
+using System.Web.Security;
 
 namespace HomeWork.Controllers
 {
@@ -57,7 +58,6 @@ namespace HomeWork.Controllers
         // GET: 客戶資料/Create
         public ActionResult Create()
         {           
-
             return View();
         }
 
@@ -67,10 +67,11 @@ namespace HomeWork.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [宣告客戶分類的SelectList物件]
-        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,客戶分類")] 客戶資料 客戶資料)
+        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,客戶分類,帳號,密碼")] 客戶資料 客戶資料)
         {
             if (ModelState.IsValid)
             {
+                客戶資料.對密碼進行雜湊運算();
                 repo客戶資料.Add(客戶資料);
                 repo客戶資料.UnitOfWork.Commit();
                 return RedirectToAction("Index");
@@ -92,6 +93,9 @@ namespace HomeWork.Controllers
             {
                 return HttpNotFound();
             }
+
+            客戶資料.密碼 = "";
+
             return View(客戶資料);
         }
 
@@ -106,14 +110,26 @@ namespace HomeWork.Controllers
             //[Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料
 
             客戶資料 客戶資料 = repo客戶資料.Find(id);
-
+            
             if (客戶資料 == null)
             {
                 return HttpNotFound();
             }
 
+            var oldPW = 客戶資料.密碼;
+
             if (TryUpdateModel(客戶資料))
             {
+                if (!string.IsNullOrEmpty(客戶資料.密碼))
+                {
+                    客戶資料.對密碼進行雜湊運算();
+                }
+                else
+                {
+                    客戶資料.密碼 = oldPW;
+                }
+
+                
                 repo客戶資料.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }

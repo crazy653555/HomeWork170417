@@ -8,6 +8,7 @@ namespace HomeWork.Models
     [MetadataType(typeof(客戶聯絡人MetaData))]
     public partial class 客戶聯絡人 : IValidatableObject
     {
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var db = new 客戶資料Entities();
