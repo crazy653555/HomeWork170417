@@ -144,8 +144,7 @@ namespace HomeWork.Controllers
         {
             if (disposing)
             {
-                var db = repo客戶銀行資訊.UnitOfWork.Context;
-                db.Dispose();
+                repo客戶銀行資訊.UnitOfWork.Context.Dispose();                
             }
             base.Dispose(disposing);
         }

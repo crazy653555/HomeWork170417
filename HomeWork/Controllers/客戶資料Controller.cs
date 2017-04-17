@@ -146,8 +146,7 @@ namespace HomeWork.Controllers
         {
             if (disposing)
             {
-                var db = repo客戶資料.UnitOfWork.Context;
-                db.Dispose();
+                repo客戶資料.UnitOfWork.Context.Dispose();                
             }
             base.Dispose(disposing);
         }
