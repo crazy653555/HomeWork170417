@@ -27,14 +27,21 @@ namespace HomeWork.Controllers
             return View(repo客戶清單.All());
         }
 
+        [宣告客戶分類的SelectList物件]
+
         // GET: 客戶資料
-        public ActionResult Index(string keyword)
+        public ActionResult Index(string keyword,string type)
         {
             var data = repo客戶資料.All();
 
             if (!string.IsNullOrEmpty(keyword))
             {
                 data = data.Where(p => p.客戶名稱.Contains(keyword));
+            }
+
+            if (!string.IsNullOrEmpty(type))
+            {
+                data = data.Where(p => p.客戶分類.Contains(type)); 
             }
             return View(data);
         }

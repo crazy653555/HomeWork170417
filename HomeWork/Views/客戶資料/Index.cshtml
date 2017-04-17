@@ -11,7 +11,11 @@
 
     @using (Html.BeginForm("Index", "客戶資料", FormMethod.Get))
     {
-        <input type="search" name="keyword" placeholder="請輸入關鍵字"/>
+        @Html.Editor("type","客戶分類")
+
+        @Html.TextBox("keyword", "", new { type = "search", placeholder = "請輸入關鍵字", @class = "form-control text" })
+        
+        <input type="submit" class="btn btn-default"/>
     }
     
 </p>
