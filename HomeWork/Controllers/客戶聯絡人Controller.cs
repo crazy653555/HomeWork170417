@@ -27,7 +27,7 @@ namespace HomeWork.Controllers
             var data = repo客戶聯絡人.All();
             if (!string.IsNullOrEmpty(keyword))
             {
-                data = data.Where(p => p.姓名.Contains(keyword));
+                data = data.Where(p => p.職稱.Contains(keyword));
             }
             return View(data);
         }
