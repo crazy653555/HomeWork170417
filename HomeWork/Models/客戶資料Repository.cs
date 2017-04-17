@@ -51,6 +51,35 @@ namespace HomeWork.Models
             return data;
 
         }
+
+        public IQueryable<客戶資料> get客戶資料_升冪降冪排序排序(IQueryable<客戶資料> 客戶資料, 升降冪排序ViewModel orderilter)
+        {
+            switch (orderilter.sort)
+            {
+                case "客戶名稱":
+                    if (orderilter.desc.HasValue && orderilter.desc.Value)
+                    {
+                        客戶資料 = 客戶資料.OrderByDescending(m => m.客戶名稱);
+                    }
+                    else
+                    {
+                        客戶資料 = 客戶資料.OrderBy(m => m.客戶名稱);
+                    }
+
+                    break;
+                case "統一編號":
+                    if (orderilter.desc.HasValue && orderilter.desc.Value)
+                    {
+                        客戶資料 = 客戶資料.OrderByDescending(m => m.統一編號);
+                    }
+                    else
+                    {
+                        客戶資料 = 客戶資料.OrderBy(m => m.統一編號);
+                    }
+                    break;
+            }
+            return 客戶資料;
+        }
     }
 
 	public  interface I客戶資料Repository : IRepository<客戶資料>
