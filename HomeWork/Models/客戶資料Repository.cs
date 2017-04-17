@@ -1,7 +1,8 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-	
+using HomeWork.Models.ViewModels;
+
 namespace HomeWork.Models
 {   
 	public  class 客戶資料Repository : EFRepository<客戶資料>, I客戶資料Repository
@@ -31,6 +32,24 @@ namespace HomeWork.Models
         public 客戶資料 Find(int id)
         {
             return this.All().FirstOrDefault(p => p.Id == id);
+        }
+
+        public IQueryable<客戶資料> get客戶資料_包含篩選條件(客戶資料篩選條件ViewModel filter)
+        {
+            var data = this.All();
+
+            if (!string.IsNullOrEmpty(filter.keyword))
+            {
+                data = data.Where(p => p.客戶名稱.Contains(filter.keyword));
+            }
+
+            if (!string.IsNullOrEmpty(filter.type))
+            {
+                data = data.Where(p => p.客戶分類 == filter.type);
+            }
+
+            return data;
+
         }
     }
 

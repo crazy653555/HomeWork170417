@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using HomeWork.Models;
 using HomeWork.Controllers.ActionFilterAttribute;
 using System.Web.Security;
+using HomeWork.Models.ViewModels;
 
 namespace HomeWork.Controllers
 {
@@ -30,19 +31,9 @@ namespace HomeWork.Controllers
         [宣告客戶分類的SelectList物件]
 
         // GET: 客戶資料
-        public ActionResult Index(string keyword,string type)
+        public ActionResult Index(客戶資料篩選條件ViewModel filter)
         {
-            var data = repo客戶資料.All();
-
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                data = data.Where(p => p.客戶名稱.Contains(keyword));
-            }
-
-            if (!string.IsNullOrEmpty(type))
-            {
-                data = data.Where(p => p.客戶分類 == type); 
-            }
+            var data = repo客戶資料.get客戶資料_包含篩選條件(filter); 
             return View(data);
         }
 

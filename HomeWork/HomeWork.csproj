@@ -197,6 +197,7 @@
     <Compile Include="Models\RepositoryIQueryableExtensions.cs">
       <DependentUpon>IRepository.EF6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\客戶資料篩選條件ViewModel.cs" />
     <Compile Include="Models\客戶清單.cs">
       <DependentUpon>ClientDB.tt</DependentUpon>
     </Compile>
