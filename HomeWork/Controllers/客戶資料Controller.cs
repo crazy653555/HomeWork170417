@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HomeWork.Models;
+using HomeWork.Controllers.ActionFilterAttribute;
 
 namespace HomeWork.Controllers
 {
@@ -52,9 +53,11 @@ namespace HomeWork.Controllers
             return View(客戶資料);
         }
 
+        [宣告客戶分類的SelectList物件]
         // GET: 客戶資料/Create
         public ActionResult Create()
-        {
+        {           
+
             return View();
         }
 
@@ -63,7 +66,8 @@ namespace HomeWork.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料)
+        [宣告客戶分類的SelectList物件]
+        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,客戶分類")] 客戶資料 客戶資料)
         {
             if (ModelState.IsValid)
             {
@@ -76,6 +80,7 @@ namespace HomeWork.Controllers
         }
 
         // GET: 客戶資料/Edit/5
+        [宣告客戶分類的SelectList物件]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +100,7 @@ namespace HomeWork.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [宣告客戶分類的SelectList物件]
         public ActionResult Edit(int id ,FormCollection form)
         {
             //[Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料

@@ -153,6 +153,7 @@
     <Compile Include="Controllers\客戶聯絡人Controller.cs" />
     <Compile Include="Controllers\客戶資料Controller.cs" />
     <Compile Include="Controllers\客戶銀行資訊Controller.cs" />
+    <Compile Include="Controllers\ActionFilterAttribute\宣告客戶分類的SelectList物件Attribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,6 +314,7 @@
     <Content Include="Views\客戶銀行資訊\Edit.cshtml" />
     <Content Include="Views\客戶銀行資訊\Index.cshtml" />
     <Content Include="Views\客戶資料\客戶清單.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\客戶分類.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
