@@ -41,7 +41,7 @@ namespace HomeWork.Controllers
 
             if (!string.IsNullOrEmpty(type))
             {
-                data = data.Where(p => p.客戶分類.Contains(type)); 
+                data = data.Where(p => p.客戶分類 == type); 
             }
             return View(data);
         }
