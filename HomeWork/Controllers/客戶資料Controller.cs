@@ -31,9 +31,35 @@ namespace HomeWork.Controllers
         [宣告客戶分類的SelectList物件]
 
         // GET: 客戶資料
-        public ActionResult Index(客戶資料篩選條件ViewModel filter)
+        public ActionResult Index(客戶資料篩選條件ViewModel filter,string sort, bool? desc)
         {
-            var data = repo客戶資料.get客戶資料_包含篩選條件(filter); 
+            var data = repo客戶資料.get客戶資料_包含篩選條件(filter);
+
+            switch (sort)
+            {
+                case "客戶名稱":
+                    if (desc.HasValue && desc.Value)
+                    {
+                        data = data.OrderByDescending(m => m.客戶名稱);
+                    }
+                    else
+                    {
+                        data = data.OrderBy(m => m.客戶名稱);
+                    }
+                
+                    break;
+                case "統一編號":
+                    if (desc.HasValue && desc.Value) 
+                    {
+                        data = data.OrderByDescending(m => m.統一編號);
+                    }
+                    else
+                    {
+                        data = data.OrderBy(m => m.統一編號);
+                    }
+                    break;
+            }
+
             return View(data);
         }
 
