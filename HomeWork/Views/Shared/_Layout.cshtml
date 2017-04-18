@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
@@ -29,9 +29,28 @@
                     <li>@Html.ActionLink("客戶聯絡人", "Index", "客戶聯絡人")</li>
                     <li>@Html.ActionLink("客戶清單", "客戶清單", "客戶資料")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Hello " + User.Identity.Name, "Index", "客戶專區")
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout","Home")">登出</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("Login","Home")">登入</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -1,13 +1,18 @@
-﻿using System;
+﻿using HomeWork.Models;
+using HomeWork.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace HomeWork.Controllers
 {
     public class HomeController : Controller
     {
+        public object FormAuthentication { get; private set; }
+
         public ActionResult Index()
         {
             return View();
@@ -25,6 +30,55 @@ namespace HomeWork.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginVM form)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = -1;
+                if (form.UserName == "admin")
+                {
+                    if (form.Password == "123")
+                    {
+                        id = 0;
+                    }
+                }
+                else
+                {
+                    var repo客戶資料 = RepositoryHelper.Get客戶資料Repository();
+                    var hashPW = FormsAuthentication.HashPasswordForStoringInConfigFile(form.Password, "SHA1");
+
+                    var item = repo客戶資料.All().SingleOrDefault(p => p.帳號 == form.UserName && p.密碼 == hashPW);
+
+                    if (item != null)
+                    {
+                        id = item.Id;
+                    }
+                }
+
+                if (id >= 0)
+                {
+                    FormsAuthentication.RedirectFromLoginPage(id.ToString(), false);
+                    return RedirectToAction("Index");
+                }
+            }
+            return View();
+        }
+
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }
