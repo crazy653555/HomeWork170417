@@ -18,10 +18,12 @@ namespace HomeWork.Controllers
         //private 客戶資料Entities db = new 客戶資料Entities();
         客戶資料Repository repo客戶資料 = RepositoryHelper.Get客戶資料Repository();
         客戶清單Repository repo客戶清單;
+        客戶聯絡人Repository repo客戶聯絡人;
 
         public 客戶資料Controller()
         {
             repo客戶清單 = RepositoryHelper.Get客戶清單Repository(repo客戶資料.UnitOfWork);
+            repo客戶聯絡人 = RepositoryHelper.Get客戶聯絡人Repository(repo客戶資料.UnitOfWork);
         }
         public ActionResult 客戶清單()
         {
@@ -47,6 +49,7 @@ namespace HomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             客戶資料 客戶資料 = repo客戶資料.Find(id.Value);
             if (客戶資料 == null)
             {
@@ -54,6 +57,38 @@ namespace HomeWork.Controllers
             }
             return View(客戶資料);
         }
+
+        [HttpPost]
+        public ActionResult BatchUpdateForContacts(int? id,List<客戶聯絡人批次更新ViewModle> data)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var item in data)
+                {
+                    var c = repo客戶聯絡人.Find(item.Id);
+                    if (c != null)
+                    {
+                        c.職稱 = item.職稱;
+                        c.手機 = item.手機;
+                        c.電話 = item.電話;
+                    }
+                    
+                }
+                repo客戶資料.UnitOfWork.Commit();
+
+                return RedirectToAction("Details", new { id = id });
+            }
+               
+
+            客戶資料 客戶資料 = repo客戶資料.Find(id.Value);
+            if (客戶資料 == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Details",客戶資料);
+           
+        }
+
 
         [宣告客戶分類的SelectList物件]
         // GET: 客戶資料/Create
